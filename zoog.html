@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+    
+    <script>
+        function setup() {
+            createCanvas(800,600);
+        }
+
+        function draw() {
+            /*blue background*/
+            background(102,231,254)
+            /*head and eyes and mouth*/
+            fill(139,251,121)
+            rect(0,580,800,100)
+            fill(254,251,213)
+            stroke(254,251,213)
+            ellipse(150,570,100,100)
+            fill("white")
+            ellipse(120,570,27,27)
+            fill("black")
+            ellipse(120,570,10,10)
+            fill("white")
+            ellipse(180,570,27,27)
+            fill("black")
+            ellipse(180,570,10,10)
+            fill("red")
+            ellipse(150,590,10,6)
+            
+            
+            /* Body and Body outline*/
+            strokeWeight("2.5")
+            stroke("black")
+            fill(55,55,55)
+            rect(220,520,150,90)
+            stroke("white")
+            text("I come in peace & pieces",225,550)
+            
+            /*legs*/
+            stroke("grey")
+            line(500,453,500,580)
+            line(450,453,450,580)
+            ellipse(500,580,20,20)
+            ellipse(450,580,20,20)
+            
+            
+            
+            /*Spaceship*/
+            strokeWeight(2.5)
+            stroke("grey")
+            ellipse(350, 50,100,45)
+            ellipse(350, 100,200, 90)
+            fill("white")
+            ellipse(350,120,100,20)
+            ellipse(270,100, 20,20)
+            fill(255,0,0)
+            ellipse(430,100, 20, 20)
+            fill(0,255,0)
+            ellipse(340,75,20,20 )
+            fill(0,0,255)
+            ellipse(343, 137,20,12)
+            stroke("White")
+            line(310,140, 120,300)
+            line(420,140, 600,300)
+            
+             
+            
+        
+            
+            
+            
+        }
+    </script>
+</head>
+
+<body>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/nestorg3035/p5js/blob/gh-pages/p5js.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+</html>
