@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+    
+    <script>
+    var centerX=100;
+    var centerY=100;
+        var deg = 1
+        function setup() {
+            createCanvas(800,600);
+        }
+
+        function draw() {
+            //makes the circle on the outside spin around the inside circle 
+            ellipseMode(CENTER)
+            ellipse(mouseX,mouseY,10,10)
+            translate(mouseX,mouseY)
+            rotate(deg)
+            fill(random(255,random(255,random(255)))) 
+            ellipseMode(CORNER)
+            ellipse(0,0,40,40)
+            deg+= 0.9  //number determine speed
+            
+        }
+        function mouseMoved(){
+            
+            
+            //makes squares
+            rect(mouseX, mouseY+17,centerX-50,centerY-50)
+            
+            
+           
+
+            
+           
+           
+            
+            rect(mouseX+70, mouseY+50,centerX-50, centerY-50)
+            
+            rect(mouseX-70,mouseY+50,centerX-50, centerY-50)
+            
+            
+            
+        }
+        function keyPressed(){
+            //the screen cleans up
+            clear()
+        }
+        function mouseDragged(){
+            //gives the inner circle a random color
+            fill(random(255),random(255),random(255))
+        }
+    </script>
+</head>
+
+<body>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/NestorG3035/p5js/blob/master/Interaction-Project2.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+</html>
