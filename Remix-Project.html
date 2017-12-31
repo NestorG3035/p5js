@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>Pong</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.13/p5.js"></script>
+    <script>
+        var ballX;//ball x-coordinate
+        var ballY;//ball y-coordinate
+        var ballSpeedX = 0;//speed of he ball sideways(left-right)
+        var ballSpeedY = 0;//speed of the ball upwards and downwards
+        var paddleHeight = 30;//how bi the paddle is
+        var paddleWidth=200//How long the paddle is
+        var score=0//The score you intially start with
+        var y=0//y-coordinate
+        var x=0//x-coodinate
+        var lives=3
+        //number of lives
+        function setup() {
+            createCanvas(800,600);
+            noCursor();//hides the mouse from the game
+            ballX = random(width);//The ball's x-value starts at a random x-value
+            ballY = random(height/2);//the ball's y-value starts at a random y-value
+        }
+
+        function draw() {
+            
+                
+            background("lightgreen");
+            
+              /*The codes below call all the factors in the game, 
+              the paddle, the all, the collision between the ball and paddle*/
+            moveBall();
+            checkCollide();
+            drawPaddle();
+            drawBall();
+            //The score box
+            fill(255,255,255,80)
+            rect(690,10,100,30)
+           textFont("sans-serif")
+            textSize(20)
+            fill(72,133,237)
+            text("Score "+ score,705,32)
+            //The amount of lives displayed on sceen
+            fill(255,255,255,140)
+            rect(7,5,53,20)
+            textSize(15)
+            fill(0,0,0)
+            textFont("sans-serif")
+            text("Lives "+ lives,10,20)
+            
+            
+        }
+
+        function moveBall() {
+            //cause the ball coordinates change, thsis makes the ball move
+            ballX = ballX + ballSpeedX;
+            ballY = ballY + ballSpeedY;
+
+           
+        } 
+
+        function checkCollide() {
+            /*makes sure that if the ball touches both ends of the screen
+            the ball bounces back*/
+            if (ballX < 0 || ballX > width) {
+               ballSpeedX = ballSpeedX * -1;
+            }/*if the ball touches the top of the screen it bounces back
+            down*/
+            if (ballY < 0) {
+                ballSpeedY = ballSpeedY * -1;
+            }
+            /*if the ball touches the paddle, you earn 1 point
+            the ball bounces up*/
+            if (ballY > height - paddleHeight) {
+                if (ballX > mouseX && ballX < mouseX + 200) {
+                    ballSpeedY = ballSpeedY * -1
+                    //speed increases
+                    ballSpeedY= ballSpeedY*1.1
+                    ballSpeedX=ballSpeedX*1.1
+                    //paddle gets shorter
+                    if(paddleWidth!=150){
+                    paddleWidth-=5
+                    score=score+1
+                    }
+                }/*If ball doesnt touch the paddle and 
+                touches the bottom of the screen, 1 life is lost
+                and the ball bounces until you get 0 lives.*/
+                 else if (lives!=0){
+                        ballSpeedY = ballSpeedY * -1.1;
+                        lives-=1
+                       
+                    } else{
+
+                        /*if you have lose your last life, 
+                        the ball stops moving, the paddle stops
+                        getting shorter*/
+                        
+                        ballSpeedX=0
+                        ballSpeedY=0
+                
+                        score=score+0
+                        paddleWidth=paddleWidth-0
+                    
+                        text("Game Over, put the mouse over the ball and it might give you some extra points!",230,300) 
+                        }
+                    
+            }
+        }
+
+        function drawBall() {
+            //The ball is drawn, changes x and y values constantly
+            
+            noStroke();
+            fill(255,0,0)
+            ellipse(ballX, ballY, 20, 20);
+        }
+
+        function drawPaddle() {
+            //The paddle is drawn, it follows the mouse x coordinate.
+            //Paddle has its own width variable which allows it to decrease 
+            //the width of the paddle when the ball touches the paddle
+            strokeWeight(4);
+            rect(mouseX, height - paddleHeight - 4, paddleWidth, paddleHeight);
+        }function mousePressed(){
+            //since the ball speed is 0, the ball speed increases to 5 hen the mouse is clicked
+          if(ballSpeedX==0){
+            ballSpeedX=5
+            ballSpeedY=5
+          
+            
+        
+          }
+        }
+            
+        
+    </script>
+</head>
+
+<body>
+<form><input TYPE="button" onClick="history.go(0)" value="Reset"></form>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/NestorG3035/p5js/blob/gh-pages/Remix-Project.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+</html>
