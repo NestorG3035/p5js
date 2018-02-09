@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>Car Project</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.13/p5.js"></script>
+    <script>
+    
+      var yellowStripe = []
+      var oppositeCar=[]
+      var score
+      
+      
+      
+      function setup() {
+        createCanvas(500,500);
+        score=0
+      }
+      
+      function draw() {
+        background(0);
+        //score
+        text("Score: "+ score,15,20)
+        
+         
+      
+       //Yellow stripes come every second
+       if(frameCount%30 == 0){
+          yellowStripe.push(new yellowStripes());
+        
+        
+       }
+
+
+        for(var i=0; i<yellowStripe.length; i++){
+          yellowStripe[i].move();
+          yellowStripe[i].display();
+        }
+        
+        //every certain second a car comes straight toward you
+        if(frameCount%80 == 0){
+          
+          oppositeCar.push(new Car1());
+
+          }
+       
+        for(var i=0; i<oppositeCar.length;i++){
+           oppositeCar[i].move();
+           oppositeCar[i].display();
+         } 
+         
+
+        drawCar()
+        checkCollide()
+        
+      }
+      
+      function yellowStripes(){
+        
+        this.y = 0;
+        
+        this.move = function(){
+         
+          this.y += 5;
+        }
+        
+        //makes the yellow lane divided in the street is a bunch of squares coming down
+        //This makes the player think hes in an actual road driving
+        this.display = function(){
+          stroke(255);
+          fill("yellow");
+          rect(240,this.y,10,50);
+        
+        
+        }
+        
+      }
+      //defines what the car looks like
+      function drawCar(){
+          fill("black")
+          //wheels
+          stroke(255)
+          rect(mouseX-22,402,15,10,20)
+          rect(mouseX+17,402,15,10,20) 
+          rect(mouseX-22,460,15,10,20)
+          rect(mouseX+17,460,15,10,20)
+          noStroke()
+         //outside part of car
+          fill("grey")
+          rect(mouseX-18,407,46,60,5)
+          quad(mouseX-18,408,mouseX-2,400,mouseX+14,400,mouseX+26,408)
+          fill(100)
+          rect(mouseX-7,412,25,45,5)
+          //windshield of car
+          fill("white")
+          rect(mouseX-15,405,39,5,5)
+          //windows of car
+          rect(mouseX-15,415,5,20,5)
+          rect(mouseX-15,440,5,20,5)
+          rect(mouseX+21,415,5,20,5)
+          rect(mouseX+21,440,5,20,5)
+          rect(mouseX-12,460,35,5,5)
+        }
+        
+          
+         /* 
+        
+ */
+ function Car1(){
+   //the other cars
+           this.y=0
+           this.x = random(20,height - 20)
+         this.move = function(){
+           this.y+=6
+      } 
+      this.display= function(){
+        fill(255)
+          fill("black")
+          //wheels
+          stroke(255)
+          rect(this.x-22,this.y-3,15,10,20)
+          rect(this.x+17,this.y-3,15,10,20) 
+          rect(this.x-22,this.y+55,15,10,20)
+          rect(this.x+17,this.y+55,15,10,20)
+          noStroke()
+         //outside part of opposite cars
+        
+          fill(random(255),random(255),random(255))
+         
+          rect(this.x-18,this.y,46,60,5)
+          quad(this.x-18,this.y+60,this.x-2,this.y+70,this.x+14,this.y+70,this.x+26,this.y+60)
+          fill(100);
+          rect(this.x-7,this.y+10,25,45,5)
+          //windshield of opposite car
+          fill("white")
+          rect(this.x-15,this.y+55,39,5,5)
+          //windows of car
+          rect(this.x-15,this.y+30,5,20,5)
+          rect(this.x-15,this.y+7,5,20,5)
+          rect(this.x+21,this.y+7,5,20,5)
+          rect(this.x+21,this.y+30,5,20,5)
+          rect(this.x-12,this.y,35,5,5)
+      }
+   
+ } 
+ 
+ 
+      
+      function checkCollide(){
+       
+        for (var i = 0; i < oppositeCar.length; i++){
+          //used this to check what waswrong with my code
+           console.log("mouseX: " + mouseX + "; Car1.x: " + oppositeCar[i].x);
+           /*If mouseX value(left and right) crashes in with the left side 
+             and right side  of the incoming cars, the game ends.*/
+          if((mouseX>oppositeCar[i].x-51&& mouseX<oppositeCar[i].x+50)&& oppositeCar[i].y>330&&oppositeCar[i].y<452){
+          fill(255)
+          textSize(50)
+          text("GAME OVER!",100,250)
+          noLoop()
+          
+          
+          }else {
+            
+            score+=1
+            
+            
+            
+          }
+        }
+        
+
+      }
+ 
+
+        
+          
+    </script>
+</head>
+
+<body>
+<form><input TYPE="button" onClick="history.go(0)" value="Reset"></form>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/NestorG3035/p5js/blob/master/Project-Car.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+</html>
