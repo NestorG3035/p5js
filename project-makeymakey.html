@@ -1,0 +1,137 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>Car Project</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.13/p5.js"></script>
+    <script>
+    
+      
+      var oppositeCircle=[]
+      var score
+      var x=210
+      var y=450
+      
+      
+      
+      
+      function setup() {
+        createCanvas(500,500);
+        score=0
+      }
+      
+      function draw() {
+        background(0);
+        //score
+        text("Score: "+ score,15,20)
+        
+         
+      
+       //Yellow stripes come every second
+       
+
+
+       
+        
+        //every certain second a car comes straight toward you
+        if(frameCount%80 == 0){
+          
+          oppositeCircle.push(new Circles());
+
+          }
+       
+        for(var i=0; i<oppositeCircle.length;i++){
+           oppositeCircle[i].move();
+           oppositeCircle[i].display();
+         } 
+        
+        drawCircle()
+        checkCollide()
+        
+      }
+      
+      
+        
+        
+        
+        
+      
+      //defines what the car looks like
+      function drawCircle(){
+          ellipse(x,y,70,70)
+        
+          
+        
+ }
+ function keyPressed(){
+     if(keyCode == 37) {
+          x-= 40;
+        }
+        
+     if(keyCode == 39) {
+          x += 40;
+        }
+ }
+ function Circles(){
+   //the other cars
+           this.y=0
+           this.x = random(20,height - 20)
+         this.move = function(){
+           this.y+=6
+      } 
+      this.display= function(){
+        fill(255)
+          
+          //wheels
+         ellipse(this.x,this.y,50,50)
+      }
+   
+ } 
+ 
+ 
+      
+      function checkCollide(){
+       
+        for (var i = 0; i < oppositeCircle.length; i++){
+          //used this to check what waswrong with my code
+           console.log("x: " + x + "; Circle.x: " + oppositeCircle[i].x);
+           /*If mouseX value(left and right) crashes in with the left side 
+             and right side  of the incoming cars, the game ends.*/
+          if((x>=oppositeCircle[i].x-25&& x<=oppositeCircle[i].x+25)&& oppositeCircle[i].y>y&&oppositeCircle[i].y<470){
+          fill(255)
+          score=score+1*1
+          
+          
+          
+          
+          }
+        
+
+      }
+ 
+
+        
+      }       
+      
+    </script>
+</head>
+
+<body>
+<form><input TYPE="button" onClick="history.go(0)" value="Reset"></form>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/NestorG3035/p5js/blob/master/project-makeymakey.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+
+
+</html>
